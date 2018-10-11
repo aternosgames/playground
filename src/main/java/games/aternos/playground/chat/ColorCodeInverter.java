@@ -19,7 +19,7 @@ import org.bukkit.ChatColor;
 public interface ColorCodeInverter {
 
     /**
-     * Performs the color code invert on the input string
+     * Performs the color code invert on the input string.
      *
      * @param input     The input string to scan for color codes
      * @param colorCode The color code which should be inverted
