@@ -49,7 +49,7 @@ public interface ColorCodeInverter {
 
     /**
      * Performs the color code invert on the input string. This method uses
-     * the {@link ComplementaryColorCodeInverter} class as inverter. Also,
+     * the {@link BasicColorCodeInverter} class as inverter. Also,
      * this method uses the color code from the {@link ChatColor} object by
      * calling {@link ChatColor#getChar()}.
      * <p><br>
@@ -60,30 +60,30 @@ public interface ColorCodeInverter {
      *
      * @return Returns the input string back with the inverted color codes
      *
-     * @see ComplementaryColorCodeInverter
+     * @see BasicColorCodeInverter
      */
     static String invertByChatColor(String input, ChatColor chatColor) {
         Preconditions.checkNotNull(input, "'input' cannot be null");
         Preconditions.checkNotNull(chatColor, "'chatColor' cannot be null");
 
-        return ComplementaryColorCodeInverter.INSTANCE.invert(input, chatColor.getChar());
+        return BasicColorCodeInverter.INSTANCE.invert(input, chatColor.getChar());
     }
 
     /**
      * Performs the color code invert on the input string. This method uses
-     * the {@link ComplementaryColorCodeInverter} class as inverter.
+     * the {@link BasicColorCodeInverter} class as inverter.
      *
      * @param input     The input string to scan for color codes
      * @param colorCode The color code which should be inverted
      *
      * @return Returns the input string back with the inverted color codes
      *
-     * @see ComplementaryColorCodeInverter
+     * @see BasicColorCodeInverter
      */
     static String invertByColorCode(String input, char colorCode) {
         Preconditions.checkNotNull(input, "'input' cannot be null");
 
-        return ComplementaryColorCodeInverter.INSTANCE.invert(input, colorCode);
+        return BasicColorCodeInverter.INSTANCE.invert(input, colorCode);
     }
 
     /**
@@ -92,22 +92,22 @@ public interface ColorCodeInverter {
      *
      * @return Returns the default {@link ColorCodeInverter} instance
      *
-     * @see ComplementaryColorCodeInverter#INSTANCE
+     * @see BasicColorCodeInverter#INSTANCE
      */
     static ColorCodeInverter getDefault() {
-        return ComplementaryColorCodeInverter.INSTANCE;
+        return BasicColorCodeInverter.INSTANCE;
     }
 
     /**
      * Creates the default {@link ColorCodeInverter} instance which is
-     * {@link ComplementaryColorCodeInverter}.
+     * {@link BasicColorCodeInverter}.
      *
-     * @return Returns the created {@link ComplementaryColorCodeInverter} instance
+     * @return Returns the created {@link BasicColorCodeInverter} instance
      *
-     * @see ComplementaryColorCodeInverter
+     * @see BasicColorCodeInverter
      */
     static ColorCodeInverter createDefault() {
-        return new ComplementaryColorCodeInverter();
+        return new BasicColorCodeInverter();
     }
 
 }
