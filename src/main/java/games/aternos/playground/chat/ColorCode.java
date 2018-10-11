@@ -88,14 +88,6 @@ public enum ColorCode {
 
     private ChatColor origin;
     private Pattern pattern;
-    private ColorCodeFilter filter = this::filter;
-    private ColorCodeInverter inverter = (input, colorCode) -> {
-        if (this.origin.getChar() != colorCode) {
-            return input;
-        }
-
-        return ColorCode.this.invert(input);
-    };
 
     ColorCode(ChatColor origin) {
         this.origin = origin;
@@ -148,24 +140,6 @@ public enum ColorCode {
         Preconditions.checkNotNull(input, "'input' cannot be null");
 
         return input.replaceAll(this.pattern().pattern(), "");
-    }
-
-    /**
-     * Returns the {@link ColorCodeFilter} for this very {@link ColorCode} type.
-     *
-     * @return Returns the {@link ColorCodeFilter} for this very {@link ColorCode} type
-     */
-    public ColorCodeFilter getFilter() {
-        return filter;
-    }
-
-    /**
-     * Returns the {@link ColorCodeInverter} for this very {@link ColorCode} type.
-     *
-     * @return Returns the {@link ColorCodeInverter} for this very {@link ColorCode} type
-     */
-    public ColorCodeInverter getInverter() {
-        return inverter;
     }
 
 }
