@@ -3,6 +3,7 @@ package games.aternos.playground.chat;
 import com.google.common.base.Preconditions;
 import org.bukkit.ChatColor;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -102,6 +103,43 @@ public enum ColorCode {
         Preconditions.checkNotNull(input, "'input' cannot be null");
 
         return input.replaceAll(target.pattern.pattern(), with.origin().toString());
+    }
+
+    /**
+     * Takes an input string and replaces all curly braces pairs ("{@code {}}") with
+     * the passed arguments in sequence. An example would look something like this:
+     * <pre>
+     * ColorCode.format("{} {} {}was slain by {}",
+     *                  ColorCode.paint(ColorCode.AQUA, "[BedWars]"),
+     *                  ColorCode.paint(ColorCode.RED, "Clockw1seLrd"),
+     *                  ColorCode.GRAY.origin().toString(),
+     *                  ColorCode.paint(ColorCode.DARK_AQUA, "dahendriik"));
+     *
+     * // Prints "§b[BedWars] §cClockw1seLrd §7was slain by §3dahendriik"
+     * System.out.println(deathMessage);
+     * </pre>
+     * <p>
+     * Please note that if the amount of curly braces pairs is not equal to
+     * the amount of arguments an {@linkplain ArrayIndexOutOfBoundsException} will be
+     * thrown.
+     *
+     * @param input The input string to format
+     * @param args  The arguments to replace with curly braces pairs
+     *
+     * @return Returns back the formatted input strign
+     */
+    public static String format(String input, Object... args) {
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+
+        Matcher matcher = Pattern.compile("\\{\\}").matcher(input);
+        StringBuffer formattedString = new StringBuffer();
+
+        int argumentCursor = 0;
+        while (matcher.find()) {
+            matcher.appendReplacement(formattedString, args[argumentCursor++].toString());
+        }
+
+        return formattedString.toString();
     }
 
     /**
