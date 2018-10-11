@@ -77,7 +77,7 @@ public enum ColorCode {
      * @param colorCode The {@link ColorCode} type to paint the input string with
      * @param input     The input string to paint
      *
-     * @return The painted input string
+     * @return Returns back the painted input string
      */
     public static String paint(ColorCode colorCode, String input) {
         Preconditions.checkNotNull(input, "'input' cannot be null");
@@ -112,7 +112,7 @@ public enum ColorCode {
      * @param colorCode The color code to invert
      * @param input     The input string to scan for color codes
      *
-     * @return Returns the input string back with the inverted color codes
+     * @return Returns back the input string with the inverted color codes
      */
     public static String invert(ColorCode colorCode, String input) {
         Preconditions.checkNotNull(colorCode, "'colorCode' cannot be null");
