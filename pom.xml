@@ -11,6 +11,8 @@
 
     <name>Playground</name>
     <description>An easy to use Bukkit toolkit providing utilities for all kinds of stuff</description>
+    <inceptionYear>2018</inceptionYear>
+    <url>https://github.com/aternosgames/playground</url>
 
     <properties>
         <playground.glowstone.version>2018.10.0-SNAPSHOT</playground.glowstone.version> <!-- Minecraft 1.13 -->
