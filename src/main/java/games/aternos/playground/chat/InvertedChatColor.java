@@ -58,7 +58,7 @@ public enum InvertedChatColor {
             }
         }
 
-        return null;
+        throw new IllegalStateException("No such color code '" + colorCode + "'");
     }
 
     private ChatColor inverted;
