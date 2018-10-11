@@ -86,6 +86,41 @@ public enum ColorCode {
         return colorCode.origin().toString() + ChatColor.stripColor(input);
     }
 
+    /**
+     * Takes an input string and searches for color codes matching
+     * the passed {@link ColorCode} type and replaces them with the
+     * inverted variants.
+     *
+     * @param colorCode The color code to invert
+     * @param input     The input string to scan for color codes
+     *
+     * @return Returns the input string back with the inverted color codes
+     */
+    public static String invert(ColorCode colorCode, String input) {
+        Preconditions.checkNotNull(colorCode, "'colorCode' cannot be null");
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+
+        input = ChatColor.translateAlternateColorCodes('&', input);
+        return input.replaceAll(colorCode.pattern().pattern(), InvertedChatColor.of(colorCode.origin).toString());
+    }
+
+    /**
+     * Takes an {@link ColorCode} type and input string and filters any
+     * color code matching the passed {@link ColorCode} type. Matching
+     * color codes are being removed from the input string.
+     *
+     * @param colorCode The color code to filter out
+     * @param input     The input string to scan for color codes
+     *
+     * @return Returns back the filtered input string
+     */
+    public static String filter(ColorCode colorCode, String input) {
+        Preconditions.checkNotNull(colorCode, "'colorCode' cannot be null");
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+
+        return input.replaceAll(colorCode.pattern().pattern(), "");
+    }
+
     private ChatColor origin;
     private Pattern pattern;
 
@@ -110,36 +145,6 @@ public enum ColorCode {
      */
     public Pattern pattern() {
         return this.pattern;
-    }
-
-    /**
-     * Takes an input string and searches for color codes matching
-     * this very color code and replaces them with the inverted variants.
-     *
-     * @param input The input string to scan for color codes
-     *
-     * @return Returns the input string back with the inverted color codes
-     */
-    public String invert(String input) {
-        Preconditions.checkNotNull(input, "'input' cannot be null");
-
-        input = ChatColor.translateAlternateColorCodes('&', input);
-        return input.replaceAll(this.pattern().pattern(), InvertedChatColor.of(this.origin).toString());
-    }
-
-    /**
-     * Takes an input string and filters any color code matching
-     * this very color code. Matching color codes are being removed from
-     * the input string.
-     *
-     * @param input The input string to scan for color codes
-     *
-     * @return Returns back the filtered input string
-     */
-    public String filter(String input) {
-        Preconditions.checkNotNull(input, "'input' cannot be null");
-
-        return input.replaceAll(this.pattern().pattern(), "");
     }
 
 }
