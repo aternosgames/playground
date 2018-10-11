@@ -68,6 +68,24 @@ public enum ColorCode {
         throw new IllegalStateException("No such color code '" + colorCode + "'");
     }
 
+    /**
+     * Paints the whole input string with the passed {@link ColorCode} type.
+     * When painting, all colors are being stripped from the input string and the
+     * passed {@link ColorCode} is being inserted at the very beginning of the
+     * input string.
+     *
+     * @param input     The input string to paint
+     * @param colorCode The {@link ColorCode} type to paint the input string with
+     *
+     * @return The painted input string
+     */
+    public static String paint(String input, ColorCode colorCode) {
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+        Preconditions.checkNotNull(colorCode, "'colorCode' cannot be null");
+
+        return colorCode.origin().toString() + ChatColor.stripColor(input);
+    }
+
     private ChatColor origin;
     private Pattern pattern;
     private ColorCodeFilter filter = this::filter;
