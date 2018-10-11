@@ -7,5 +7,44 @@
     <groupId>games.aternos.playground</groupId>
     <artifactId>playground</artifactId>
     <version>0.0.1</version>
+    <packaging>jar</packaging>
+
+    <name>Playground</name>
+    <description>An easy to use Bukkit toolkit providing utilities for all kinds of stuff</description>
+
+    <properties>
+        <playground.glowstone.version>2018.10.0-SNAPSHOT</playground.glowstone.version> <!-- Minecraft 1.13 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>glowstone-repo</id>
+            <url>https://repo.glowstone.net/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.glowstone</groupId>
+            <artifactId>glowstone</artifactId>
+            <version>${playground.glowstone.version}</version>
+        </dependency>
+    </dependencies>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>Aternos Games</name>
+        <url>https://aternos.games</url>
+    </organization>
 
 </project>
