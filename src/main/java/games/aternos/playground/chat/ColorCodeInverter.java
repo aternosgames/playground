@@ -63,6 +63,9 @@ public interface ColorCodeInverter {
      * @see ComplementaryColorCodeInverter
      */
     static String invertByChatColor(String input, ChatColor chatColor) {
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+        Preconditions.checkNotNull(chatColor, "'chatColor' cannot be null");
+
         return ComplementaryColorCodeInverter.INSTANCE.invert(input, chatColor.getChar());
     }
 
@@ -78,6 +81,8 @@ public interface ColorCodeInverter {
      * @see ComplementaryColorCodeInverter
      */
     static String invertByColorCode(String input, char colorCode) {
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+
         return ComplementaryColorCodeInverter.INSTANCE.invert(input, colorCode);
     }
 
