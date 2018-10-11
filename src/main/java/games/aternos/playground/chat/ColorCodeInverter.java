@@ -1,6 +1,5 @@
 package games.aternos.playground.chat;
 
-import com.google.common.base.Preconditions;
 import org.bukkit.ChatColor;
 
 /**
@@ -27,87 +26,5 @@ public interface ColorCodeInverter {
      * @return Returns the input string back with the inverted color codes
      */
     String invert(String input, char colorCode);
-
-    /**
-     * Performs the color code invert on the input string. This method
-     * does not take any color code input as it performs the invert on all
-     * color codes available.
-     *
-     * @param input The input string to scan for color codes
-     *
-     * @return Returns the input string back with the inverted color codes
-     */
-    static String invertAll(String input) {
-        Preconditions.checkNotNull(input, "'input' cannot be null");
-
-        for (ChatColor color : ChatColor.values()) {
-            input = invertByChatColor(input, color);
-        }
-
-        return input;
-    }
-
-    /**
-     * Performs the color code invert on the input string. This method uses
-     * the {@link BasicColorCodeInverter} class as inverter. Also,
-     * this method uses the color code from the {@link ChatColor} object by
-     * calling {@link ChatColor#getChar()}.
-     * <p><br>
-     * Calling this method is equal to {@code #invertByColorCode(input, ChatColor.GREEN.getChar());}
-     *
-     * @param input     The input string to scan for color codes
-     * @param chatColor The {@link ChatColor} which should be inverted
-     *
-     * @return Returns the input string back with the inverted color codes
-     *
-     * @see BasicColorCodeInverter
-     */
-    static String invertByChatColor(String input, ChatColor chatColor) {
-        Preconditions.checkNotNull(input, "'input' cannot be null");
-        Preconditions.checkNotNull(chatColor, "'chatColor' cannot be null");
-
-        return BasicColorCodeInverter.INSTANCE.invert(input, chatColor.getChar());
-    }
-
-    /**
-     * Performs the color code invert on the input string. This method uses
-     * the {@link BasicColorCodeInverter} class as inverter.
-     *
-     * @param input     The input string to scan for color codes
-     * @param colorCode The color code which should be inverted
-     *
-     * @return Returns the input string back with the inverted color codes
-     *
-     * @see BasicColorCodeInverter
-     */
-    static String invertByColorCode(String input, char colorCode) {
-        Preconditions.checkNotNull(input, "'input' cannot be null");
-
-        return BasicColorCodeInverter.INSTANCE.invert(input, colorCode);
-    }
-
-    /**
-     * Returns the default {@link ColorCodeInverter} instance which is being used
-     * for all invert operations the static utilities methods provide.
-     *
-     * @return Returns the default {@link ColorCodeInverter} instance
-     *
-     * @see BasicColorCodeInverter#INSTANCE
-     */
-    static ColorCodeInverter getDefault() {
-        return BasicColorCodeInverter.INSTANCE;
-    }
-
-    /**
-     * Creates the default {@link ColorCodeInverter} instance which is
-     * {@link BasicColorCodeInverter}.
-     *
-     * @return Returns the created {@link BasicColorCodeInverter} instance
-     *
-     * @see BasicColorCodeInverter
-     */
-    static ColorCodeInverter createDefault() {
-        return new BasicColorCodeInverter();
-    }
 
 }
