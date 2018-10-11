@@ -87,6 +87,24 @@ public enum ColorCode {
     }
 
     /**
+     * Takes an input string replaces all matching {@link ColorCode} (parameter {@code target})
+     * types with another {@link ColorCode} (parameter {@code with}) type.
+     *
+     * @param target The targeted {@link ColorCode} type to replace
+     * @param with   The replacement {@link ColorCode} type
+     * @param input  The input string to apply the replacements on
+     *
+     * @return Returns back the input string with replaced color codes
+     */
+    public static String replace(ColorCode target, ColorCode with, String input) {
+        Preconditions.checkNotNull(target, "'target' cannot be null");
+        Preconditions.checkNotNull(with, "'with' cannot be null");
+        Preconditions.checkNotNull(input, "'input' cannot be null");
+
+        return input.replaceAll(target.pattern.pattern(), with.origin().toString());
+    }
+
+    /**
      * Takes an input string and searches for color codes matching
      * the passed {@link ColorCode} type and replaces them with the
      * inverted variants.
