@@ -1,12 +1,10 @@
 package games.aternos.playground.chat;
 
-import org.bukkit.ChatColor;
-
 /**
- * Represents a simple inverter for {@link ChatColor} and or Minecraft color codes.
- * Takes an input string and a character representing the color code that should be
- * inverted. The inverter scans through the string and replaces any color codes with
- * the inverted variants.
+ * Represents a simple inverter for Minecraft color codes. Takes an input
+ * string and a character representing the color code. The whole input string
+ * is being scanned for that color code and is being inverted by replacing the
+ * actual color code literal with the inverted color code literal.
  * <p>
  * Inverted color codes can be found here: {@link InvertedChatColor}.
  *
