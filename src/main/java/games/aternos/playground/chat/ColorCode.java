@@ -74,12 +74,12 @@ public enum ColorCode {
      * passed {@link ColorCode} is being inserted at the very beginning of the
      * input string.
      *
-     * @param input     The input string to paint
      * @param colorCode The {@link ColorCode} type to paint the input string with
+     * @param input     The input string to paint
      *
      * @return The painted input string
      */
-    public static String paint(String input, ColorCode colorCode) {
+    public static String paint(ColorCode colorCode, String input) {
         Preconditions.checkNotNull(input, "'input' cannot be null");
         Preconditions.checkNotNull(colorCode, "'colorCode' cannot be null");
 
